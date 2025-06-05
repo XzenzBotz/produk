@@ -1,75 +1,59 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZennxStore</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header>
-    <h1 class="judul"><span>ZennxStore</span></h1>
-    <p class="subjudul">Sell Barang New & Second</p>
-    <p class="slogan">berkualitas, awet, dan harga murmer dana pelajar</p>
+    <h1>ZennxStore</h1>
+    <h3>Sell Barang New & Second</h3>
+    <p><em>Berkualitas, awet, dan harga murmer dana pelajar</em></p>
   </header>
-
-  <main class="produk-container">
-    <!-- Produk-produk -->
-    <div class="produk">
+  <div class="products">
+    <div class="product">
       <img src="img/produk1.jpg" alt="Produk 1">
-      <h3>Jam Tangan Sport</h3>
-      <p class="deskripsi">Jam tangan digital sporty dan tahan air.</p>
-      <p class="harga">Rp120.000</p>
-      <button class="tombol-keranjang">Masukkan Keranjang</button>
-    </div>
-    <!-- 7 produk lainnya tinggal duplikat dengan mengganti isi sesuai produk -->
-    <div class="produk">
-      <img src="img/produk2.jpg" alt="Produk 2">
-      <h3>Kemeja Denim</h3>
-      <p class="deskripsi">Kemeja pria second kualitas tinggi.</p>
-      <p class="harga">Rp75.000</p>
-      <button class="tombol-keranjang">Masukkan Keranjang</button>
-    </div>
-    <!-- Tambahkan hingga produk ke-8 -->
-  </main>
-
-  <div id="keranjangPopup" class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="toggleKeranjang()">&times;</span>
-      <h2>Keranjang</h2>
-      <ul id="listKeranjang"></ul>
+      <h2>Sepatu Sneakers Second</h2>
+      <p>Masih mulus 90%, cocok buat hangout. Ukuran 42.</p>
+      <strong>Rp 75.000</strong>
+      <button onclick="addToCart('Sepatu Sneakers Second')">Masukkan Keranjang</button>
     </div>
   </div>
-
-  <footer>
-    <div class="kontak">
-      <p><i class="fas fa-envelope"></i> Email: akmalsebastian89@gmail.com</p>
-      <p><i class="fab fa-whatsapp"></i> WhatsApp: 6285150731087</p>
-      <p><i class="fab fa-tiktok"></i> Tiktok: _xzennz</p>
-    </div>
-  </footer>
-
-  <button class="btn-keranjang" onclick="toggleKeranjang()">
-    <i class="fas fa-shopping-cart"></i>
-  </button>
-
+  <div id="cart-popup">
+    <strong>Keranjang:</strong>
+    <ul id="cart-items"></ul>
+    <a href="checkout.html"><button style="margin-top: 1rem; width: 100%;">Lanjut Checkout</button></a>
+  </div>
+  <a id="cart-btn" href="#" onclick="toggleCart()">🛒</a>
+  <div class="contact-icons">
+    <a href="mailto:akmalsebastian89@gmail.com"><img src="https://img.icons8.com/ios-glyphs/30/000000/new-post.png"/>Email</a>
+    <a href="https://wa.me/6285150731087" target="_blank"><img src="https://img.icons8.com/ios-glyphs/30/000000/whatsapp.png"/>WhatsApp</a>
+    <a href="https://tiktok.com/@_xzennz" target="_blank"><img src="https://img.icons8.com/ios-glyphs/30/000000/tiktok.png"/>TikTok</a>
+    <a href="https://t.me/xzennz" target="_blank"><img src="https://img.icons8.com/ios-glyphs/30/000000/telegram-app.png"/>Telegram</a>
+  </div>
   <script>
-    const listKeranjang = document.getElementById('listKeranjang');
-    const tombolKeranjang = document.querySelectorAll('.tombol-keranjang');
-    tombolKeranjang.forEach(tombol => {
-      tombol.addEventListener('click', () => {
-        const produk = tombol.parentElement;
-        const nama = produk.querySelector('h3').innerText;
-        const harga = produk.querySelector('.harga').innerText;
-        const item = document.createElement('li');
-        item.innerHTML = `${nama} - ${harga} <button onclick="this.parentElement.remove()">Hapus</button>`;
-        listKeranjang.appendChild(item);
+    const cart = [];
+    function addToCart(productName) {
+      cart.push(productName);
+      renderCart();
+    }
+    function renderCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      cart.forEach((item, index) => {
+        cartItems.innerHTML += `<li>${item} <button onclick="removeItem(${index})">❌</button></li>`;
       });
-    });
-
-    function toggleKeranjang() {
-      document.getElementById('keranjangPopup').classList.toggle('active');
+    }
+    function removeItem(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+    function toggleCart() {
+      const popup = document.getElementById("cart-popup");
+      popup.style.display = popup.style.display === "none" || popup.style.display === "" ? "block" : "none";
     }
   </script>
 </body>
