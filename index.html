@@ -1,79 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZennxStore</title>
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZennxStore</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>ZennxStore</h1>
-        <h3>Sell Barang New & Second</h3>
-        <p><em>Berkualitas, awet, dan harga murmer dana pelajar</em></p>
-    </header>
-    <div class="products">
-        <!-- 8 produk -->
-        <div class="product">
-            <img src="img/produk1.jpg" alt="Produk 1" />
-            <h2>Sepatu Sneakers Second</h2>
-            <p>Masih mulus 90%, cocok buat hangout. Ukuran 42.</p>
-            <strong>Rp 75.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk2.jpg" alt="Produk 2" />
-            <h2>Kaos Distro Original</h2>
-            <p>Kaos distro second, bahan adem dan masih sangat bagus.</p>
-            <strong>Rp 35.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk3.jpg" alt="Produk 3" />
-            <h2>Jam Tangan Digital</h2>
-            <p>Second, berfungsi normal. Tahan air & baterai tahan lama.</p>
-            <strong>Rp 50.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk4.jpg" alt="Produk 4" />
-            <h2>Tas Selempang Keren</h2>
-            <p>Bisa untuk sekolah/kuliah. Masih kuat & bersih.</p>
-            <strong>Rp 40.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk5.jpg" alt="Produk 5" />
-            <h2>Keyboard Gaming RGB</h2>
-            <p>Bekas tapi normal semua. Lampu RGB menyala cerah.</p>
-            <strong>Rp 60.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk6.jpg" alt="Produk 6" />
-            <h2>Celana Cargo Coklat</h2>
-            <p>Bahan kuat dan nyaman. Ukuran 32 cocok remaja pria.</p>
-            <strong>Rp 45.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk7.jpg" alt="Produk 7" />
-            <h2>Powerbank 10000mAh</h2>
-            <p>Masih seperti baru, bisa ngecas 2-3x. Kabel bawaan lengkap.</p>
-            <strong>Rp 55.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-        <div class="product">
-            <img src="img/produk8.jpg" alt="Produk 8" />
-            <h2>Headset Gaming</h2>
-            <p>Suara jernih, mic jelas, dan nyaman dipakai buat kelas online.</p>
-            <strong>Rp 65.000</strong><br />
-            <button>Masukkan Keranjang</button>
-        </div>
-    </div>
+  <header>
+    <h1 class="judul"><span>ZennxStore</span></h1>
+    <p class="subjudul">Sell Barang New & Second</p>
+    <p class="slogan">berkualitas, awet, dan harga murmer dana pelajar</p>
+  </header>
 
-    <a id="cart-btn" href="checkout.html">🛒 Keranjang</a>
-    <a id="contact-btn" href="#kontak">📧 Kontak</a>
+  <main class="produk-container">
+    <!-- Produk-produk -->
+    <div class="produk">
+      <img src="img/produk1.jpg" alt="Produk 1">
+      <h3>Jam Tangan Sport</h3>
+      <p class="deskripsi">Jam tangan digital sporty dan tahan air.</p>
+      <p class="harga">Rp120.000</p>
+      <button class="tombol-keranjang">Masukkan Keranjang</button>
+    </div>
+    <!-- 7 produk lainnya tinggal duplikat dengan mengganti isi sesuai produk -->
+    <div class="produk">
+      <img src="img/produk2.jpg" alt="Produk 2">
+      <h3>Kemeja Denim</h3>
+      <p class="deskripsi">Kemeja pria second kualitas tinggi.</p>
+      <p class="harga">Rp75.000</p>
+      <button class="tombol-keranjang">Masukkan Keranjang</button>
+    </div>
+    <!-- Tambahkan hingga produk ke-8 -->
+  </main>
+
+  <div id="keranjangPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="toggleKeranjang()">&times;</span>
+      <h2>Keranjang</h2>
+      <ul id="listKeranjang"></ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="kontak">
+      <p><i class="fas fa-envelope"></i> Email: akmalsebastian89@gmail.com</p>
+      <p><i class="fab fa-whatsapp"></i> WhatsApp: 6285150731087</p>
+      <p><i class="fab fa-tiktok"></i> Tiktok: _xzennz</p>
+    </div>
+  </footer>
+
+  <button class="btn-keranjang" onclick="toggleKeranjang()">
+    <i class="fas fa-shopping-cart"></i>
+  </button>
+
+  <script>
+    const listKeranjang = document.getElementById('listKeranjang');
+    const tombolKeranjang = document.querySelectorAll('.tombol-keranjang');
+    tombolKeranjang.forEach(tombol => {
+      tombol.addEventListener('click', () => {
+        const produk = tombol.parentElement;
+        const nama = produk.querySelector('h3').innerText;
+        const harga = produk.querySelector('.harga').innerText;
+        const item = document.createElement('li');
+        item.innerHTML = `${nama} - ${harga} <button onclick="this.parentElement.remove()">Hapus</button>`;
+        listKeranjang.appendChild(item);
+      });
+    });
+
+    function toggleKeranjang() {
+      document.getElementById('keranjangPopup').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
