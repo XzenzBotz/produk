@@ -3,135 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout - ZennxStore</title>
+  <title>Checkout ZennxStore</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      animation: fadeIn 0.6s ease-in;
+      background: #f5f5f5;
+      color: #333;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    header {
+      background: #ff5722;
+      color: white;
+      padding: 1rem;
+      text-align: center;
     }
-    .container {
-      max-width: 700px;
-      margin: 2rem auto;
+    form {
       background: white;
-      padding: 2rem;
-      border-radius: 10px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 480px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: #007bff;
-    }
-    label {
+    form label {
       display: block;
       margin-top: 1rem;
-      font-weight: 500;
     }
-    input, textarea, select {
+    form input, form select {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
       border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-    .cart-summary {
-      background: #f1f1f1;
-      padding: 1rem;
-      margin-top: 1rem;
       border-radius: 6px;
     }
-    .cart-summary ul {
-      padding-left: 1.2rem;
+    form input[type="file"] {
+      background: #f0f0f0;
     }
-    .payments {
-      margin-top: 1rem;
-    }
-    .payments div {
+    .logo-payments {
       display: flex;
-      align-items: center;
-      margin-bottom: 0.7rem;
-      gap: 10px;
+      gap: 12px;
+      margin: 1rem 0;
+      justify-content: center;
     }
-    .payments img {
-      width: 32px;
-      height: 32px;
-    }
-    .qris {
-      margin-top: 1rem;
-      text-align: center;
-    }
-    .qris img {
-      width: 150px;
-      border-radius: 8px;
+    .logo-payments img {
+      height: 36px;
+      background: white;
+      padding: 4px;
+      border-radius: 6px;
     }
     button {
-      margin-top: 2rem;
-      padding: 12px;
-      width: 100%;
-      font-size: 1rem;
-      background: #007bff;
+      background: #ff5722;
       color: white;
+      padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 6px;
+      margin-top: 1.5rem;
       cursor: pointer;
+      width: 100%;
     }
     button:hover {
-      background: #0056b3;
+      background: #e64a19;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Checkout</h1>
-    <div class="cart-summary">
-      <strong>Ringkasan Keranjang:</strong>
-      <ul id="checkout-cart">
-        <li>Tidak ada item</li>
-      </ul>
-    </div>
+  <header>
+    <h2>Checkout ZennxStore</h2>
+  </header>
+  <form action="checkout-sukses.html" method="GET">
+    <label>Nama Lengkap:</label>
+    <input type="text" name="nama" required />
 
-    <div class="payments">
-      <strong>Metode Pembayaran:</strong>
-      <div><img src="https://img.icons8.com/ios-filled/50/money.png"/>COD (Bayar di Tempat)</div>
-      <div><img src="https://img.icons8.com/fluency/48/gopay.png"/>Gopay: 0895609803131</div>
-      <div><img src="https://img.icons8.com/color/48/dana.png"/>Dana: 085150731087</div>
-      <div><img src="https://img.icons8.com/color/48/shopee.png"/>ShopeePay: 0895321321745</div>
-    </div>
+    <label>Nomor WhatsApp (Aktif):</label>
+    <input type="tel" name="whatsapp" required placeholder="08xxxxxxx" />
 
-    <div class="qris">
-      <strong>QRIS (Semua Pembayaran):</strong><br/>
-      <img src="https://i.ibb.co/Y4tG84HL/IMG-20250606-115438.jpg" alt="QRIS AllPay"/>
-    </div>
+    <label>Alamat Pengiriman:</label>
+    <input type="text" name="alamat" required />
 
-    <form action="checkout-sukses.html" method="GET">
-      <label for="nama">Nama Lengkap</label>
-      <input type="text" id="nama" name="nama" required />
-      <label for="alamat">Alamat Pengiriman</label>
-      <textarea id="alamat" name="alamat" required></textarea>
-      <button type="submit">Kirim Pesanan</button>
-    </form>
-  </div>
+    <label>Pilih Metode Pembayaran:</label>
+    <select name="metode" required>
+      <option value="cod">COD (Bayar di Tempat)</option>
+      <option value="gopay">GoPay - 0895609803131</option>
+      <option value="dana">Dana - 085150731087</option>
+      <option value="shopeepay">ShopeePay - 0895321321745</option>
+    </select>
+<div class="logo-payments">
+  <img src="https://i.ibb.co/BH5TcZft/images.png" alt="GoPay" />
+  <img src="https://i.ibb.co/TBffXy0V/images-14.jpg" alt="Dana" />
+  <img src="https://img.icons8.com/color/48/000000/shopee.png" alt="ShopeePay" />
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const cartData = localStorage.getItem('zennx_cart');
-      const cartList = document.getElementById('checkout-cart');
-      if (cartData) {
-        const cartItems = JSON.parse(cartData);
-        cartList.innerHTML = '';
-        cartItems.forEach((item) => {
-          cartList.innerHTML += `<li>${item}</li>`;
-        });
-      }
-    });
-  </script>
+
+    <label>Upload Bukti Pembayaran (jika non-COD):</label>
+    <input type="file" name="bukti" accept="image/*" />
+
+    <button type="submit">Kirim Pesanan</button>
+  </form>
 </body>
-             </html>
+</html>
