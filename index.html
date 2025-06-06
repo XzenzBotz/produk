@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('images (13).jpeg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/RTz1QWwm/1f303b1cb345dcd99889d3a02314b719.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #333;
     }
@@ -147,12 +147,15 @@
     <a href="https://t.me/xzennz"><img src="https://img.icons8.com/ios-glyphs/30/000000/telegram-app.png"/></a>
   </div>
   <script>
-    const cart = [];
+    const cart = JSON.parse(localStorage.getItem('zennx_cart')) || [];
+
     function addToCart(productName) {
       cart.push(productName);
+      localStorage.setItem('zennx_cart', JSON.stringify(cart));
       renderCart();
       updateCartCount();
     }
+
     function renderCart() {
       const cartItems = document.getElementById("cart-items");
       cartItems.innerHTML = "";
@@ -160,19 +163,29 @@
         cartItems.innerHTML += `<li>${item} <button onclick="removeItem(${index})">❌</button></li>`;
       });
     }
+
     function removeItem(index) {
       cart.splice(index, 1);
+      localStorage.setItem('zennx_cart', JSON.stringify(cart));
       renderCart();
       updateCartCount();
     }
+
     function updateCartCount() {
       const cartBtn = document.getElementById("cart-btn");
       cartBtn.setAttribute("data-count", cart.length);
     }
+
     function toggleCart() {
       const popup = document.getElementById("cart-popup");
       popup.style.display = (popup.style.display === "block") ? "none" : "block";
     }
+
+    // Inisialisasi saat halaman dibuka
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCart();
+      updateCartCount();
+    });
   </script>
 </body>
 </html>
