@@ -71,7 +71,7 @@
   <header>
     <h2>Checkout ZennxStore</h2>
   </header>
-  <form action="checkout-sukses.html" method="GET">
+  <form onsubmit="window.location.href='checkout-sukses.html'; return false;">
     <label>Nama Lengkap:</label>
     <input type="text" name="nama" required />
 
@@ -88,12 +88,12 @@
       <option value="dana">Dana - 085150731087</option>
       <option value="shopeepay">ShopeePay - 0895321321745</option>
     </select>
-<div class="logo-payments">
-  <img src="https://i.ibb.co/BH5TcZft/images.png" alt="GoPay" />
-  <img src="https://i.ibb.co/TBffXy0V/images-14.jpg" alt="Dana" />
-  <img src="https://img.icons8.com/color/48/000000/shopee.png" alt="ShopeePay" />
-</div>
 
+    <div class="logo-payments">
+      <img src="https://i.ibb.co/PhPty9X/gopay-logo.png" alt="GoPay" />
+      <img src="https://i.ibb.co/p3mTqYx/dana-logo.png" alt="Dana" />
+      <img src="https://img.icons8.com/color/48/000000/shopee.png" alt="ShopeePay" />
+    </div>
 
     <label>Upload Bukti Pembayaran (jika non-COD):</label>
     <input type="file" name="bukti" accept="image/*" />
